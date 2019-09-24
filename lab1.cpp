@@ -339,31 +339,13 @@ void render()
         s->height = 10;
         s->center.x = (-120 + 5*65) + (25*i);
         s->center.y = (500 - 5*60) - (40*i);
-        //s->center.z = 100;
-        Rect r;
-        r.bot = s->center.y + 5;
-        r.left = s->center.x;
-        //r.center = 0;
-        if(i == 0)
-            ggprint12(&r, 16, 0x00ffff00, "Requirements");
-        if(i == 1)
-            ggprint12(&r, 16, 0x00ffff00, "Specification");
-        if(i == 2)
-            ggprint12(&r, 16, 0x00ffff00, "Design");
-        if(i == 3)
-            ggprint12(&r, 16, 0x00ffff00, "Implementation");
-        if(i == 4)
-            ggprint12(&r, 16, 0x00ffff00, "Testing");
-
     }
-
-    
     float w, h;
     for(int i = 0; i < nbox; i++) {
         //error: try to figure out how to create multiple box objects
         //into this array....shitttttt
         Shape *s = &g.box[i];
-        glColor3ub(90,140,90);
+        glColor3ub(90,140,90 * i);
         glPushMatrix();
         glTranslatef(s->center.x, s->center.y, s->center.z);
         w = s->width;
@@ -376,13 +358,10 @@ void render()
         glEnd();
         glPopMatrix();
     }
-    //
-    //Draw particles here
-    //if (g.n > 0) {
     for(int i = 0; i < g.n; i++) {
         //There is at least one particle to draw.
         glPushMatrix();
-        glColor3ub(150,160,220);
+        glColor3ub(150,160,220 * i);
         Vec *c = &g.particle[i].s.center;
         w = h = 2;
         glBegin(GL_QUADS);
@@ -393,6 +372,22 @@ void render()
         glEnd();
         glPopMatrix();
     }
+	for(int i = 0; i < nbox; i++) { 
+		Rect r;
+        r.bot = (-120 + 5*65) + (40*i) - 170;
+        r.left = (500 - 5*60) - (40*i) + 118;
+        if(i == 0)
+            ggprint12(&r, 16, 0x00ffff00, "Requirements");
+        if(i == 1)
+            ggprint12(&r, 16, 0x00ffff00, "Specification");
+        if(i == 2)
+            ggprint12(&r, 16, 0x00ffff00, "Design");
+        if(i == 3)
+            ggprint12(&r, 16, 0x00ffff00, "Implementation");
+        if(i == 4)
+            ggprint12(&r, 16, 0x00ffff00, "Testing");
+    }
+
 
 }
 

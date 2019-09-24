@@ -222,7 +222,7 @@ void makeParticle(int x, int y)
     p->s.center.y = y;
     p->velocity.y = -0.2;
     p->velocity.y =  ((double)rand()/ (double)RAND_MAX)- .5;
-    p->velocity.x =  ((double)rand()/ (double)RAND_MAX)- .5 + .4;
+    p->velocity.x =  ((double)rand()/ (double)RAND_MAX)- .5 + .6;
 
     ++g.n;
 }
